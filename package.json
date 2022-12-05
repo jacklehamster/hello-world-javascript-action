@@ -21,5 +21,7 @@
       "@actions/core": "^1.9.1",
       "@actions/github": "^2.2.0"
    },
-   "hello": "Hello jacklehamster/hello-world-javascript-action"
+   "hello": "Hello jacklehamster/hello-world-javascript-action",
+   "mtime": "2022-12-05T15:50:16.885Z",
+   "ctime": "2022-12-05T15:50:16.885Z"
 }
