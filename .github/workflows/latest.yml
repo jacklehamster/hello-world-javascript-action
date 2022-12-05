@@ -1,0 +1,8 @@
+on: [push]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    steps
+    - name: Latest tag
+      uses: EndBug/latest-tag@v1.5.1
