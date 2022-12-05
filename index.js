@@ -18,7 +18,7 @@ try {
   const nameToGreet = core.getInput('who-to-greet');
   console.log(`Hello ${nameToGreet}!`);
   console.log(process.cwd());
-  json.hello = `Hello ${nameToGreet}`;
+  json.hello = `Hello ${nameToGreet} ${new Date().getTime()}`;
 
   fs.writeFileSync(core.getInput('file'), JSON.stringify(json, null, '   '));
 
