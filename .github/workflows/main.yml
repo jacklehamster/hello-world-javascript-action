@@ -15,7 +15,7 @@ jobs:
       - name: Commit files # transfer the new html files back into the repository
         run: |
           git config --local user.name "jacklehamster"
-          git add ./docs
+          git add .
           git commit -m "Updating"
       - name: Push changes # push the output folder to your repo
         uses: ad-m/github-push-action@master
