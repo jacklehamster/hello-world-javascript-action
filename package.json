@@ -18,7 +18,7 @@
    },
    "homepage": "https://github.com/jacklehamster/hello-world-javascript-action#readme",
    "dependencies": {
-      "@actions/core": "^1.2.4",
+      "@actions/core": "^1.9.1",
       "@actions/github": "^2.2.0"
    },
    "hello": "Hello jacklehamster/hello-world-javascript-action 1670233315065"
