@@ -11,7 +11,7 @@ function setOutput(key, value) {
 
 try {
   const file = fs.readFileSync(core.getInput('file'));
-  const json = JSON.parse(packageJson);
+  const json = JSON.parse(file);
 
 
   // `who-to-greet` input defined in action metadata file
