@@ -21,5 +21,5 @@
       "@actions/core": "^1.2.4",
       "@actions/github": "^2.2.0"
    },
-   "hello": "Hello jacklehamster/hello-world-javascript-action"
+   "hello": "Hello jacklehamster/hello-world-javascript-action 1670233315065"
 }
