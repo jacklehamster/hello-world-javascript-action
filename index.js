@@ -17,6 +17,7 @@ try {
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
   console.log(`Hello ${nameToGreet}!`);
+  console.log(process.cwd());
   json.hello = `Hello ${nameToGreet}`;
 
   fs.writeFileSync(core.getInput('file'), JSON.stringify(json, null, '   '));
