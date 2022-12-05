@@ -18,7 +18,11 @@ try {
   const nameToGreet = core.getInput('who-to-greet');
   console.log(`Hello ${nameToGreet}!`);
   console.log(process.cwd());
+  const { mtime, ctime } = fs.statSync(core.getInput('file'))
+  
   json.hello = `Hello ${nameToGreet}`;
+  json.mtime = mtime;
+  json.ctime = ctime;
 
   fs.writeFileSync(core.getInput('file'), JSON.stringify(json, null, '   '));
 
