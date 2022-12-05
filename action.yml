@@ -8,6 +8,9 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
+  file:
+    description: 'File to modify'
+    default: 'package.json'
 outputs:
   time: # id of output
     description: 'The time we greeted you'

@@ -10,9 +10,17 @@ function setOutput(key, value) {
 }
 
 try {
+  const file = fs.readFileSync(core.getInput('file'));
+  const json = JSON.parse(packageJson);
+
+
   // `who-to-greet` input defined in action metadata file
   const nameToGreet = core.getInput('who-to-greet');
   console.log(`Hello ${nameToGreet}!`);
+  json.hello = `Hello ${nameToGreet}`;
+
+  fs.writeFileSync(core.getInput('file'), JSON.stringify(json, null, '   '));
+
   const time = (new Date()).getTime();
   setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
