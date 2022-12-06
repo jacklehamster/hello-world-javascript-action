@@ -19,7 +19,8 @@
    "homepage": "https://github.com/jacklehamster/hello-world-javascript-action#readme",
    "dependencies": {
       "@actions/core": "^1.9.1",
-      "@actions/github": "^2.2.0"
+      "@actions/github": "^2.2.0",
+      "@dobuki/recurse-directory": "^1.0.2"
    },
    "hello": "Hello jacklehamster/hello-world-javascript-action",
    "mtime": "2022-12-06T15:46:18.036Z",
