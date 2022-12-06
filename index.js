@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const recurse = require('@dobuki/recurse-directory');
+const {saveDirectoryStructure} = require('@dobuki/recurse-directory');
 const os = require("os")
 const fs = require("fs")
 
