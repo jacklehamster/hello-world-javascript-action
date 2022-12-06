@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const recurse = require('@dobuki/recurse-directory');
 const os = require("os")
 const fs = require("fs")
 
@@ -25,7 +26,15 @@ try {
   json.ctime = ctime;
 
   fs.writeFileSync(core.getInput('file'), JSON.stringify(json, null, '   '));
+  
+  
+  saveDirectoryStructure(".", "dir.json", { ignore: ['./.git', './node_modules'], cutoff: 1, space: "  " })
+  .then(() => {
+    const content = fs.readFileSync("dir.json", { encoding: "utf8" });
+    console.info(content);
+  });
 
+  
   const time = (new Date()).getTime();
   setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
