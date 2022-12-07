@@ -43,7 +43,7 @@ function insertPathInStructure(pathSplit, index, structure) {
     if (!structure.files) {
       structure.files = {};
     }
-    structure.files[pathSplit[index]] = mtime.getTime();
+    structure.files[pathSplit[pathSplit.length-1]] = mtime.getTime();
   } else {
     if (!structure.dir) {
       structure.dir = {};
