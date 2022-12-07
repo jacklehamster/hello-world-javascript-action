@@ -93,8 +93,10 @@ try {
   fs.writeFileSync(core.getInput('file'), JSON.stringify(json, null, '   '));
   
   const directories = fs.readdirSync(".");
+  console.log(directories);
   
   directories.forEach(dir => {
+    console.log(dir);
     saveDirectoryStructure(dir, "dir.json", { ignore: ['./.git', './node_modules'], cutoff: 1, space: "  " })
     .then(() => {
       const content = fs.readFileSync("dir.json", { encoding: "utf8" });
