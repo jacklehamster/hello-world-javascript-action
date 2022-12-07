@@ -92,10 +92,22 @@ try {
 
   fs.writeFileSync(core.getInput('file'), JSON.stringify(json, null, '   '));
   
-  fs.readdir(".", dir => {
-    saveDirectoryStructure(dir, "dir.json", { ignore: ['./.git', './node_modules'], cutoff: 1, space: "  " })
+  const directories = fs.readdirSync(".");
+  console.log(directories);
+  
+  const ignore = ['.git', 'node_modules', `${dir}/dir.json`];
+  
+  directories.forEach(dir => {
+    if (!fs.statSync(dir).isDirectory()) {
+      return;
+    }
+    if (ignore.some(i => dir.startsWith(i))) {
+      return;
+    }
+    console.log(dir);
+    saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore, cutoff: 0, space: "  " })
     .then(() => {
-      const content = fs.readFileSync("dir.json", { encoding: "utf8" });
+      const content = fs.readFileSync(`${dir}/dir.json`, { encoding: "utf8" });
       console.info(content);
     });    
   });

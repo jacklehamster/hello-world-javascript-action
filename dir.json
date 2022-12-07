@@ -1,13 +1,7 @@
 {
   "files": {
-    ".gitignore": 1670395454407,
-    "LICENSE": 1670395454407,
-    "README.md": 1670395454407,
-    "action.yml": 1670395454407,
-    "dir.json": 1670395454407,
-    "index.cjs": 1670395454407,
-    "package-lock.json": 1670395455059,
-    "package.json": 1670395455447
+    "test2.txt": 1670396771472,
+    "testfile.txt": 1670396771472
   },
-  "md5": "d2b1237f043cdba6b3693a2420ee729b"
+  "md5": "0f9ff6dd53b9d7d32238fad5364b8824"
 }
