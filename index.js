@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const {saveDirectoryStructure} = require('@dobuki/recurse-directory');
+// const {saveDirectoryStructure} = require('@dobuki/recurse-directory');
 const os = require("os");
 const fs = require("fs");
 // import core from '@actions/core';
@@ -42,7 +42,7 @@ function insertPathInStructure(pathSplit, index, structure) {
   }
 }
 
-export async function getDirectoryStructure(path, { ignore, cutoff = 0 }) {
+async function getDirectoryStructure(path, { ignore, cutoff = 0 }) {
   const root = {};
   await recursePath(path, async path => {
     insertPathInStructure(path.split("/"), cutoff, root);
@@ -52,7 +52,7 @@ export async function getDirectoryStructure(path, { ignore, cutoff = 0 }) {
   return root;
 }
 
-export async function saveDirectoryStructure(path, target, { ignore, cutoff, space }) {
+async function saveDirectoryStructure(path, target, { ignore, cutoff, space }) {
   const structure = await getDirectoryStructure(path, { ignore, cutoff });
   const md5Hash = md5(stringify(structure));
   structure.md5 = md5Hash;
