@@ -6,7 +6,7 @@ const github = require('@actions/github');
 // const {saveDirectoryStructure} = require('@dobuki/recurse-directory');
 const os = require("os");
 const fs = require("fs");
-const md5 = required("md5");
+const md5 = require("md5");
 // import core from '@actions/core';
 // // import {saveDirectoryStructure} from '@dobuki/recurse-directory';
 // import os from 'os';
