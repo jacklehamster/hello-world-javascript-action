@@ -1,8 +1,8 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const {saveDirectoryStructure} = require('@dobuki/recurse-directory');
-const os = require("os")
-const fs = require("fs")
+const os = require("os");
+const fs = require("fs");
 
 function setOutput(key, value) {
   // Temporary hack until core actions library catches up with github new recommendations
