@@ -1,18 +1,14 @@
 {
   "dir": {
-    "directory": {
-      "dir": {
-        "subdir": {
-          "files": {
-            "test3.txt": 1670405621450
-          }
-        }
-      },
+    "subdir": {
       "files": {
-        "test2.txt": 1670405621450,
-        "testfile.txt": 1670405621450
+        "test3.txt": 1670405789929
       }
     }
   },
-  "md5": "9aa052a93b59aacc449cc44182525cb9"
+  "files": {
+    "test2.txt": 1670405789929,
+    "testfile.txt": 1670405789929
+  },
+  "md5": "f53a4e08c733f295fe487c578e3a5af2"
 }
