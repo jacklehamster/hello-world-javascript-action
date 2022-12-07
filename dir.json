@@ -1,13 +1,20 @@
 {
-  "files": {
-    ".gitignore": 1670395454407,
-    "LICENSE": 1670395454407,
-    "README.md": 1670395454407,
-    "action.yml": 1670395454407,
-    "dir.json": 1670395454407,
-    "index.cjs": 1670395454407,
-    "package-lock.json": 1670395455059,
-    "package.json": 1670395455447
+  "dir": {
+    "directory": {
+      "files": {
+        "testfile.txt": 1670395549527
+      }
+    }
   },
-  "md5": "d2b1237f043cdba6b3693a2420ee729b"
+  "files": {
+    ".gitignore": 1670395549527,
+    "LICENSE": 1670395549527,
+    "README.md": 1670395549527,
+    "action.yml": 1670395549527,
+    "dir.json": 1670395549527,
+    "index.cjs": 1670395549527,
+    "package-lock.json": 1670395550183,
+    "package.json": 1670395550459
+  },
+  "md5": "af3747a8b7673c703936b5e47c36111a"
 }
