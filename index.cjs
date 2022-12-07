@@ -6,7 +6,7 @@ const github = require('@actions/github');
 // const {saveDirectoryStructure} = require('@dobuki/recurse-directory');
 const os = require("os");
 const fs = require("fs");
-const md5 = required("md5");
+const md5 = require("md5");
 // import core from '@actions/core';
 // // import {saveDirectoryStructure} from '@dobuki/recurse-directory';
 // import os from 'os';
@@ -92,11 +92,12 @@ try {
 
   fs.writeFileSync(core.getInput('file'), JSON.stringify(json, null, '   '));
   
-  
-  saveDirectoryStructure(".", "dir.json", { ignore: ['./.git', './node_modules'], cutoff: 1, space: "  " })
-  .then(() => {
-    const content = fs.readFileSync("dir.json", { encoding: "utf8" });
-    console.info(content);
+  fs.readdir(".", dir => {
+    saveDirectoryStructure(dir, "dir.json", { ignore: ['./.git', './node_modules'], cutoff: 1, space: "  " })
+    .then(() => {
+      const content = fs.readFileSync("dir.json", { encoding: "utf8" });
+      console.info(content);
+    });    
   });
 
   
