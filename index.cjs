@@ -114,7 +114,7 @@ try {
         return;
       }
       console.log(dir);
-      return saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore: [...ignore, `${dir}/dir.json`], cutoff: 0, space: "  " })
+      return saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore: [...ignore, `${dir}/dir.json`], cutoff: 1, space: "  " })
       .then(() => {
         const content = fs.readFileSync(`${dir}/dir.json`, { encoding: "utf8" });
         console.info(content);
