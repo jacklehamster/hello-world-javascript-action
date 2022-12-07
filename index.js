@@ -1,3 +1,6 @@
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+
 const core = require('@actions/core');
 const github = require('@actions/github');
 // const {saveDirectoryStructure} = require('@dobuki/recurse-directory');
