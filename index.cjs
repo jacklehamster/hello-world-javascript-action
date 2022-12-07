@@ -96,6 +96,9 @@ try {
   console.log(directories);
   
   directories.forEach(dir => {
+    if (fs.statSync(dir).isDirectory()) {
+      return;
+    }
     console.log(dir);
     saveDirectoryStructure(dir, "dir.json", { ignore: ['./.git', './node_modules'], cutoff: 1, space: "  " })
     .then(() => {
