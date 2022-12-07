@@ -96,7 +96,7 @@ try {
   console.log(directories);
   
   directories.forEach(dir => {
-    if (fs.statSync(dir).isDirectory()) {
+    if (!fs.statSync(dir).isDirectory()) {
       return;
     }
     console.log(dir);
