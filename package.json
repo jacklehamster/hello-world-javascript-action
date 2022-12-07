@@ -21,7 +21,11 @@
       "@actions/core": "^1.9.1",
       "@actions/github": "^2.2.0",
       "@dobuki/recurse-directory": "^1.0.2",
-      "md5": "^2.3.0"
+      "from": "^0.1.7",
+      "import": "^0.0.6",
+      "json-stable-stringify": "^1.0.2",
+      "md5": "^2.3.0",
+      "stringify": "^5.2.0"
    },
    "hello": "Hello jacklehamster/hello-world-javascript-action",
    "mtime": "2022-12-06T15:46:18.036Z",
