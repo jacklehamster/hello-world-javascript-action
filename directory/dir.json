@@ -1,8 +1,14 @@
 {
-  "files": {
-    "dir.json": 1670398688309,
-    "test2.txt": 1670398688309,
-    "testfile.txt": 1670398688309
+  "dir": {
+    "directory": {
+      "dir": {
+        "subdir": {
+          "files": {
+            "test3.txt": 1670399071743
+          }
+        }
+      }
+    }
   },
-  "md5": "298601c9a3a4512ad1e58406b0f45196"
+  "md5": "bbf7476d9d9326d084edad2a3b2f1acf"
 }
