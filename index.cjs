@@ -95,7 +95,7 @@ try {
   const directories = fs.readdirSync(".");
   console.log(directories);
   
-  const ignore = ['.git', 'node_modules', `${dir}/dir.json`];
+  const ignore = ['.git', 'node_modules'];
   
   directories.forEach(dir => {
     if (!fs.statSync(dir).isDirectory()) {
@@ -105,7 +105,7 @@ try {
       return;
     }
     console.log(dir);
-    saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore, cutoff: 0, space: "  " })
+    saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore: [...ignore, `${dir}/dir.json`], cutoff: 0, space: "  " })
     .then(() => {
       const content = fs.readFileSync(`${dir}/dir.json`, { encoding: "utf8" });
       console.info(content);
