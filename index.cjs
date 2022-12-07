@@ -22,12 +22,19 @@ async function recursePath(path, callback, options) {
       }
     }
   }
+  console.log(">>", path);
+  const isDir = fs.statSync(path).isDirectory();
+  if (!isDir) {
+    callback([path]);
+    return;
+  }
+
+
+
   const fileList = await fs.promises.readdir(path);
 
   return Promise.all(fileList.map(fileName => `${path}/${fileName}`)
-    .map(async filePath => await (fs.statSync(filePath).isDirectory()
-      ? recursePath(filePath, callback, options)
-      : callback(filePath))));
+    .map(async filePath => recursePath(filePath, callback, options)));
 }
 
 function insertPathInStructure(pathSplit, index, structure) {
