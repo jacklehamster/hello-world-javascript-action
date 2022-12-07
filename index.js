@@ -4,8 +4,8 @@ import os from 'os';
 import fs from 'fs';
 
 
-async function recursePath(path, callback) {
-  if (options.ignore) {
+async function recursePath(path, callback, options) {
+  if (options?.ignore) {
     for (let f of options.ignore) {
       if (path.startsWith(f)) {
         return;
