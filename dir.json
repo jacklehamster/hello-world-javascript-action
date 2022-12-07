@@ -1,20 +1,7 @@
 {
-  "dir": {
-    "directory": {
-      "files": {
-        "testfile.txt": 1670395549527
-      }
-    }
-  },
   "files": {
-    ".gitignore": 1670395549527,
-    "LICENSE": 1670395549527,
-    "README.md": 1670395549527,
-    "action.yml": 1670395549527,
-    "dir.json": 1670395549527,
-    "index.cjs": 1670395549527,
-    "package-lock.json": 1670395550183,
-    "package.json": 1670395550459
+    "test2.txt": 1670396485004,
+    "testfile.txt": 1670396485004
   },
-  "md5": "af3747a8b7673c703936b5e47c36111a"
+  "md5": "45403e437346e98e3845d44fbf9259c7"
 }
