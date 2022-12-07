@@ -97,7 +97,7 @@ try {
   
   const ignore = ['.git', 'node_modules'];
   
-  directories.forEach(dir => {
+  const promises = directories.map(dir => {
     if (!fs.statSync(dir).isDirectory()) {
       return;
     }
@@ -105,19 +105,23 @@ try {
       return;
     }
     console.log(dir);
-    saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore: [...ignore, `${dir}/dir.json`], cutoff: 0, space: "  " })
+    return saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore: [...ignore, `${dir}/dir.json`], cutoff: 0, space: "  " })
     .then(() => {
       const content = fs.readFileSync(`${dir}/dir.json`, { encoding: "utf8" });
       console.info(content);
     });    
   });
 
+  for (promise of promises) {
+    await promise;
+  }
+
   
   const time = (new Date()).getTime();
   setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  //const payload = JSON.stringify(github.context.payload, undefined, 2)
+  //console.log(`The event payload: ${payload}`);
 } catch (error) {
   core.setFailed(error.message);
 }
