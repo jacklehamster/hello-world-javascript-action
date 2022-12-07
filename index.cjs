@@ -92,33 +92,38 @@ try {
 
   fs.writeFileSync(core.getInput('file'), JSON.stringify(json, null, '   '));
   
-  const directories = fs.readdirSync(".");
-  console.log(directories);
-  
-  const ignore = ['.git', 'node_modules'];
-  
-  const promises = directories.map(dir => {
-    if (!fs.statSync(dir).isDirectory()) {
-      return;
-    }
-    if (ignore.some(i => dir.startsWith(i))) {
-      return;
-    }
-    console.log(dir);
-    return saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore: [...ignore, `${dir}/dir.json`], cutoff: 0, space: "  " })
-    .then(() => {
-      const content = fs.readFileSync(`${dir}/dir.json`, { encoding: "utf8" });
-      console.info(content);
-    });    
-  });
 
-  for (promise of promises) {
-    await promise;
+  async function execute() {
+    const directories = fs.readdirSync(".");
+    console.log(directories);
+    
+    const ignore = ['.git', 'node_modules'];
+    
+    const promises = directories.map(dir => {
+      if (!fs.statSync(dir).isDirectory()) {
+        return;
+      }
+      if (ignore.some(i => dir.startsWith(i))) {
+        return;
+      }
+      console.log(dir);
+      return saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore: [...ignore, `${dir}/dir.json`], cutoff: 0, space: "  " })
+      .then(() => {
+        const content = fs.readFileSync(`${dir}/dir.json`, { encoding: "utf8" });
+        console.info(content);
+      });    
+    });
+  
+    for (promise of promises) {
+      await promise;
+    }
   }
 
+  execute().then(() => {
+    const time = (new Date()).getTime();
+    setOutput("time", time);  
+  });
   
-  const time = (new Date()).getTime();
-  setOutput("time", time);
   // Get the JSON webhook payload for the event that triggered the workflow
   //const payload = JSON.stringify(github.context.payload, undefined, 2)
   //console.log(`The event payload: ${payload}`);
