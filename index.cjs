@@ -83,21 +83,21 @@ function setOutput(key, value) {
 }
 
 try {
-  const file = fs.readFileSync(core.getInput('file'));
-  const json = JSON.parse(file);
+  // const file = fs.readFileSync(core.getInput('file'));
+  // const json = JSON.parse(file);
 
 
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  console.log(process.cwd());
-  const { mtime, ctime } = fs.statSync(core.getInput('file'))
+  // // `who-to-greet` input defined in action metadata file
+  // const nameToGreet = core.getInput('who-to-greet');
+  // console.log(`Hello ${nameToGreet}!`);
+  // console.log(process.cwd());
+  // const { mtime, ctime } = fs.statSync(core.getInput('file'))
   
-  json.hello = `Hello ${nameToGreet}`;
-  json.mtime = mtime;
-  json.ctime = ctime;
+  // json.hello = `Hello ${nameToGreet}`;
+  // json.mtime = mtime;
+  // json.ctime = ctime;
 
-  fs.writeFileSync(core.getInput('file'), JSON.stringify(json, null, '   '));
+  // fs.writeFileSync(core.getInput('file'), JSON.stringify(json, null, '   '));
   
 
   async function execute() {
