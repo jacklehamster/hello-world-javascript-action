@@ -37,8 +37,9 @@ async function recursePath(path, callback, options) {
 }
 
 function insertPathInStructure(pathSplit, index, structure) {
-  const { mtime, isDirectory } = fs.statSync(pathSplit.join("/"));
-  if (!isDirectory()) {
+
+  const { mtime } = fs.statSync(pathSplit.join("/"));
+  if (!fs.statSync(pathSplit.join("/")).isDirectory()) {
     if (!structure.files) {
       structure.files = {};
     }
