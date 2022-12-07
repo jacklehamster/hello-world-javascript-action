@@ -8,7 +8,7 @@ const md5 = required("md5");
 // // import {saveDirectoryStructure} from '@dobuki/recurse-directory';
 // import os from 'os';
 // import fs from 'fs';
-import stringify from "json-stable-stringify";
+const stringify require("json-stable-stringify");
 
 
 async function recursePath(path, callback, options) {
