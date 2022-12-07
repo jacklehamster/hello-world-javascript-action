@@ -100,9 +100,9 @@ try {
       return;
     }
     console.log(dir);
-    saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore: ['.git', 'node_modules', `${dir}/dir.json`], cutoff: 1, space: "  " })
+    saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore: ['.git', 'node_modules', `${dir}/dir.json`], cutoff: 0, space: "  " })
     .then(() => {
-      const content = fs.readFileSync("dir.json", { encoding: "utf8" });
+      const content = fs.readFileSync(`${dir}/dir.json`, { encoding: "utf8" });
       console.info(content);
     });    
   });
