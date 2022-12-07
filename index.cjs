@@ -25,7 +25,7 @@ async function recursePath(path, callback, options) {
   console.log(">>", path);
   const isDir = fs.statSync(path).isDirectory();
   if (!isDir) {
-    callback([path]);
+    callback(path);
     return;
   }
 
