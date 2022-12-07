@@ -37,18 +37,18 @@ async function recursePath(path, callback, options) {
 }
 
 function insertPathInStructure(pathSplit, index, structure) {
-
-  const { mtime } = fs.statSync(pathSplit.join("/"));
-  if (!fs.statSync(pathSplit.join("/")).isDirectory()) {
+  const isFile = index === pathSplit.length - 1;
+  if (isFile) {
     if (!structure.files) {
       structure.files = {};
     }
-    structure.files[pathSplit[pathSplit.length-1]] = mtime.getTime();
+    const { mtime } = fs.statSync(pathSplit.join("/"));
+    structure.files[pathSplit[index]] = mtime.getTime();
   } else {
     if (!structure.dir) {
       structure.dir = {};
     }
-    const subStructure = structure.dir[pathSplit[index]] = {};
+    const subStructure = structure.dir[pathSplit[index]] = (structure.dir[pathSplit[index]] ?? {});
     insertPathInStructure(pathSplit, index + 1, subStructure);
   }
 }
@@ -57,7 +57,7 @@ async function getDirectoryStructure(rootPath, { ignore, cutoff = 0 }) {
   const root = {};
   await recursePath(rootPath, async path => {
     console.log(">>", path);
-    insertPathInStructure([".", ...path.split("/")], cutoff, root);
+    insertPathInStructure(path.split("/"), cutoff, root);
   }, {
     ignore,
   });
