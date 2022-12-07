@@ -22,7 +22,6 @@ async function recursePath(path, callback, options) {
       }
     }
   }
-  console.log(">>", path);
   const isDir = fs.statSync(path).isDirectory();
   if (!isDir) {
     callback(path);
@@ -57,6 +56,7 @@ function insertPathInStructure(pathSplit, index, structure) {
 async function getDirectoryStructure(path, { ignore, cutoff = 0 }) {
   const root = {};
   await recursePath(path, async path => {
+    console.log(">>", path);
     insertPathInStructure(path.split("/"), cutoff, root);
   }, {
     ignore,
