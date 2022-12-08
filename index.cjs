@@ -56,7 +56,7 @@ function insertPathInStructure(pathSplit, index, structure) {
 async function getDirectoryStructure(rootPath, { ignore, cutoff = 0 }) {
   const root = {};
   await recursePath(rootPath, async path => {
-    root[path.split("/").slice(cutoff).join("/")] = fs.statSync(path);
+    root[path.split("/").slice(cutoff).join("/")] = fs.statSync(path).mtime;
 //    insertPathInStructure(path.split("/"), cutoff, root);
   }, {
     ignore,
