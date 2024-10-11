@@ -53,9 +53,12 @@ function insertPathInStructure(pathSplit, index, structure) {
   }
 }
 
-async function getDirectoryStructure(rootPath, { ignore, cutoff = 0 }) {
+async function getDirectoryStructure(rootPath, { ignore, cutoff = 0 }, extension) {
   const root = {};
   await recursePath(rootPath, async path => {
+    if (extension && path.endsWith(extension)) {
+      return;
+    }
     root[path.split("/").slice(cutoff).join("/")] = fs.statSync(path).mtime;
 //    insertPathInStructure(path.split("/"), cutoff, root);
   }, {
@@ -64,8 +67,8 @@ async function getDirectoryStructure(rootPath, { ignore, cutoff = 0 }) {
   return root;
 }
 
-async function saveDirectoryStructure(path, target, { ignore, cutoff, space }) {
-  const structure = await getDirectoryStructure(path, { ignore, cutoff });
+async function saveDirectoryStructure(path, target, { ignore, cutoff, space }, extension) {
+  const structure = await getDirectoryStructure(path, { ignore, cutoff }, extension);
   const md5Hash = md5(stringify(structure));
   structure.md5 = md5Hash;
   const json = stringify(structure, { space });
@@ -113,12 +116,19 @@ try {
       if (ignore.some(i => dir.startsWith(i))) {
         return;
       }
-      console.log(dir);
-      return saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore: [...ignore, `${dir}/dir.json`], cutoff: 1, space: "  " })
+      await saveDirectoryStructure(dir, `${dir}/dir.json`, { ignore: [...ignore, `${dir}/dir.json`, `${dir}/dir-json.json`], cutoff: 1, space: "  " })
       .then(() => {
         const content = fs.readFileSync(`${dir}/dir.json`, { encoding: "utf8" });
         console.info(content);
-      });    
+      });
+      await saveDirectoryStructure(dir, `${dir}/dir-json.json`, { ignore: [...ignore, `${dir}/dir.json`, `${dir}/dir-json.json`], cutoff: 1, space: "  " }, ".json")
+      .then(() => {
+        const content = fs.readFileSync(`${dir}/dir-json.json`, { encoding: "utf8" });
+        console.info(content);
+      });
+      
+
+      
     });
   
     for (promise of promises) {
