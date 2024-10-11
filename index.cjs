@@ -109,7 +109,7 @@ try {
     
     const ignore = ['.git', 'node_modules'];
     
-    const promises = directories.map(dir => {
+    const promises = directories.map(async (dir) => {
       if (!fs.statSync(dir).isDirectory()) {
         return;
       }
@@ -126,9 +126,6 @@ try {
         const content = fs.readFileSync(`${dir}/dir-json.json`, { encoding: "utf8" });
         console.info(content);
       });
-      
-
-      
     });
   
     for (promise of promises) {
