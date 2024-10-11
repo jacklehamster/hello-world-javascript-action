@@ -1,22 +1,13 @@
-# Hello world javascript action
+# Dobuki Directory Generator
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
-As a test, it also adds "Hello" in package.json.
+Note: This Github action was originally copied from a hello world, so it has a lot of junk.
+That way, it's very simple to use and works fine for what it needs to do.
 
-## Inputs
+## What does it do
 
-### `who-to-greet`
+This just lists all files in your repo, and puts them into a "dir.json" file at the root.
 
-**Required** The name of the person to greet. Default `"World"`.
+## Usage
 
-## Outputs
-
-### `time`
-
-The time we greeted you.
-
-## Example usage
-
-uses: actions/hello-world-javascript-action@v1
-with:
-  who-to-greet: 'Mona the Octocat'
+Just look at one example where it's used:
+https://github.com/jacklehamster/power-troll-levels/blob/main/.github/workflows/main.yml
