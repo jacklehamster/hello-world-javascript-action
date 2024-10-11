@@ -1,5 +1,5 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Dobuki Directory generator'
+description: 'Generates a directory of the files in your repo'
 branding:
   icon: 'sun'  
   color: 'yellow'
