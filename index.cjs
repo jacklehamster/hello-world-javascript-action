@@ -28,11 +28,11 @@ async function recursePath(path, callback, options) {
   );
 }
 
-function getGitCommitTime(filePath) {
+function getGitCommitSha(filePath) {
   try {
-    const command = `git log -1 --format=%ct -- ${filePath}`;
-    const commitTime = execSync(command).toString().trim();
-    return new Date(commitTime * 1000); // Convert Unix timestamp to JavaScript Date object
+    const command = `git log -1 --format=%H -- ${filePath}`;
+    const commitSHA = execSync(command).toString().trim();
+    return commitSHA;
   } catch (error) {
     console.error(`Error getting git commit time for ${filePath}:`, error);
     return null;
@@ -51,8 +51,9 @@ async function getDirectoryStructure(
       if (extension && !path.endsWith(extension)) {
         return;
       }
-      root[path.split("/").slice(cutoff).join("/")] =
-        getGitCommitTime(path) ?? "untracked"; //fs.statSync(path).mtime;
+      root[path.split("/").slice(cutoff).join("/")] = {
+        sha: getGitCommitSha(path),
+      };
     },
     {
       ignore,
