@@ -28,13 +28,13 @@ async function recursePath(path, callback, options) {
   );
 }
 
-function getGitCommitSha(filePath) {
+function getFileContentSha(filePath) {
   try {
-    const command = `git log -1 --format=%H -- ${filePath}`;
-    const commitSHA = execSync(command).toString().trim();
-    return commitSHA;
+    const command = `git hash-object ${filePath}`;
+    const fileSHA = execSync(command).toString().trim();
+    return fileSHA;
   } catch (error) {
-    console.error(`Error getting git commit time for ${filePath}:`, error);
+    console.error(`Error getting file content SHA for ${filePath}:`, error);
     return null;
   }
 }
@@ -52,7 +52,7 @@ async function getDirectoryStructure(
         return;
       }
       root[path.split("/").slice(cutoff).join("/")] = {
-        sha: getGitCommitSha(path),
+        sha: getFileContentSha(path),
       };
     },
     {
