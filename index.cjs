@@ -1,9 +1,9 @@
 const core = require("@actions/core");
 const os = require("os");
 const fs = require("fs");
+const crypto = require("crypto");
 const md5 = require("md5");
 const stringify = require("json-stable-stringify");
-const { execSync } = require("child_process");
 
 async function recursePath(path, callback, options) {
   if (options?.ignore) {
@@ -30,11 +30,13 @@ async function recursePath(path, callback, options) {
 
 function getFileContentSha(filePath) {
   try {
-    const command = `git hash-object ${filePath}`;
-    const fileSHA = execSync(command).toString().trim();
-    return fileSHA;
+    const fileBuffer = fs.readFileSync(filePath);
+    const hashSum = crypto.createHash("sha1");
+    hashSum.update(fileBuffer);
+    const hex = hashSum.digest("hex");
+    return hex;
   } catch (error) {
-    console.error(`Error getting file content SHA for ${filePath}:`, error);
+    console.error(`Error computing SHA for ${filePath}:`, error);
     return null;
   }
 }
