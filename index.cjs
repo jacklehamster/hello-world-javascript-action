@@ -8,7 +8,7 @@ const { execSync } = require("child_process");
 async function recursePath(path, callback, options) {
   if (options?.ignore) {
     for (let f of options.ignore) {
-      if (path.startsWith(f)) {
+      if (path.indexOf(f) >= 0) {
         return;
       }
     }
@@ -77,7 +77,26 @@ async function saveDirectoryStructure(
   structure.md5 = md5Hash;
   const json = stringify(structure, { space });
 
-  await fs.promises.writeFile(target, json);
+  await fs.promises.writeFile(`${path}/${target}`, json);
+
+  const directories = {};
+  Object.entries(structure).forEach(([key, value]) => {
+    const split = key.split("/");
+    if (split.length > 2) {
+      const subdir = split.slice(0, -1).join("/");
+      if (!directories[subdir]) directories[subdir] = {};
+      directories[subdir][key] = value;
+    }
+  });
+  await Promise.all(
+    Object.entries(directories).map(([key, value]) => {
+      return fs.promises.writeFile(
+        `${key}/${target}`,
+        stringify(value, { space })
+      );
+    })
+  );
+  console.log(directories);
 }
 
 function setOutput(key, value) {
@@ -93,33 +112,30 @@ try {
     const directories = fs.readdirSync(".");
     console.log(directories);
 
-    const ignore = [".git", "node_modules"];
+    const ignoreList = [".git", "node_modules", `dir.json`, `dir-json.json`];
 
     const promises = directories.map(async (dir) => {
       if (!fs.statSync(dir).isDirectory()) {
         return;
       }
-      if (ignore.some((i) => dir.startsWith(i))) {
+      if (ignoreList.some((i) => dir.startsWith(i))) {
         return;
       }
-      const ignoreList = [...ignore, `${dir}/dir.json`, `${dir}/dir-json.json`];
       const dirStructureConfig = {
         ignore: ignoreList,
         cutoff: 1,
         space: "  ",
       };
       await Promise.all([
-        saveDirectoryStructure(dir, `${dir}/dir.json`, dirStructureConfig).then(
-          () => {
-            const content = fs.readFileSync(`${dir}/dir.json`, {
-              encoding: "utf8",
-            });
-            console.info(content);
-          }
-        ),
+        saveDirectoryStructure(dir, `dir.json`, dirStructureConfig).then(() => {
+          const content = fs.readFileSync(`${dir}/dir.json`, {
+            encoding: "utf8",
+          });
+          console.info(content);
+        }),
         saveDirectoryStructure(
           dir,
-          `${dir}/dir-json.json`,
+          `dir-json.json`,
           dirStructureConfig,
           ".json"
         ).then(() => {
