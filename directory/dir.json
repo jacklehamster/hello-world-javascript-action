@@ -1,6 +1,12 @@
 {
-  "md5": "35ac0fa27a1b4c01eb7e2d383a71f4c0",
-  "subdir/test3.txt": "2024-10-25T03:28:19.184Z",
-  "test2.txt": "2024-10-25T03:28:19.184Z",
-  "testfile.txt": "2024-10-25T03:28:19.184Z"
+  "md5": "7ab8840981bdbd8f635d51d7f7aa550b",
+  "subdir/test3.txt": {
+    "sha": "05013ed87b7a9b52d3d63d2107b16d16d0916637"
+  },
+  "test2.txt": {
+    "sha": "05013ed87b7a9b52d3d63d2107b16d16d0916637"
+  },
+  "testfile.txt": {
+    "sha": "05013ed87b7a9b52d3d63d2107b16d16d0916637"
+  }
 }
