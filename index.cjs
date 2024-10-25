@@ -1,6 +1,7 @@
 const core = require("@actions/core");
 const os = require("os");
 const fs = require("fs");
+const md5 = require("md5");
 const stringify = require("json-stable-stringify");
 const { execSync } = require("child_process");
 
