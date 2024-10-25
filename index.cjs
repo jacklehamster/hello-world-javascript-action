@@ -88,7 +88,6 @@ async function saveDirectoryStructure(
       directories[subdir][key] = value;
     }
   });
-  console.log(directories);
   await Promise.all(
     Object.entries(directories).map(([key, value]) => {
       return fs.promises.writeFile(
@@ -97,6 +96,7 @@ async function saveDirectoryStructure(
       );
     })
   );
+  return json;
 }
 
 function setOutput(key, value) {
@@ -110,7 +110,6 @@ function setOutput(key, value) {
 try {
   async function execute() {
     const directories = fs.readdirSync(".");
-    console.log(directories);
 
     const ignoreList = [".git", "node_modules", `dir.json`, `dir-json.json`];
 
@@ -127,21 +126,17 @@ try {
         space: "  ",
       };
       await Promise.all([
-        saveDirectoryStructure(dir, `dir.json`, dirStructureConfig).then(() => {
-          const content = fs.readFileSync(`${dir}/dir.json`, {
-            encoding: "utf8",
-          });
-          console.info(content);
-        }),
+        saveDirectoryStructure(dir, `dir.json`, dirStructureConfig).then(
+          (content) => {
+            console.info(content);
+          }
+        ),
         saveDirectoryStructure(
           dir,
           `dir-json.json`,
           dirStructureConfig,
           ".json"
-        ).then(() => {
-          const content = fs.readFileSync(`${dir}/dir-json.json`, {
-            encoding: "utf8",
-          });
+        ).then((content) => {
           console.info(content);
         }),
       ]);
