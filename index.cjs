@@ -73,11 +73,6 @@ async function saveDirectoryStructure(
     { ignore, cutoff },
     extension
   );
-  const md5Hash = md5(stringify(structure));
-  structure.md5 = md5Hash;
-  const json = stringify(structure, { space });
-
-  await fs.promises.writeFile(`${path}/${target}`, json);
 
   const directories = {};
   Object.entries(structure).forEach(([key, value]) => {
