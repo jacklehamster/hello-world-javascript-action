@@ -94,7 +94,7 @@ async function saveDirectoryStructure(
       );
     })
   );
-  return json;
+  return directories;
 }
 
 function setOutput(key, value) {
