@@ -111,7 +111,13 @@ try {
   async function execute() {
     const directories = fs.readdirSync(".");
 
-    const ignoreList = [".git", "node_modules", `dir.json`, `dir-json.json`];
+    const ignoreList = [
+      ".git",
+      "node_modules",
+      `dir.json`,
+      `dir-json.json`,
+      ".github",
+    ];
 
     const promises = directories.map(async (dir) => {
       if (!fs.statSync(dir).isDirectory()) {
