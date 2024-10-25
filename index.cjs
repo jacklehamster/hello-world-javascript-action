@@ -1,7 +1,6 @@
 const core = require("@actions/core");
 const os = require("os");
 const fs = require("fs");
-const md5 = require("md5");
 const stringify = require("json-stable-stringify");
 const { execSync } = require("child_process");
 
@@ -85,6 +84,9 @@ async function saveDirectoryStructure(
   });
   await Promise.all(
     Object.entries(directories).map(([key, value]) => {
+      delete value.md5;
+      value.md5 = md5(stringify(value));
+
       return fs.promises.writeFile(
         `${path}/${key}/${target}`,
         stringify(value, { space })
