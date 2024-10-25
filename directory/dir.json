@@ -1,12 +1,12 @@
 {
-  "md5": "0c05a28c06e1deb457f889ea3ecd62c9",
+  "md5": "f81816aa27612b0d6ad09bb6a4f472ea",
   "subdir/test3.txt": {
-    "sha": "6c96da536cdf1c961b6d93dccda55b81c780d917"
+    "sha": "4fffda562548d4b48997f325eba938eb6018c8f5"
   },
   "test2.txt": {
-    "sha": "6c96da536cdf1c961b6d93dccda55b81c780d917"
+    "sha": "4fffda562548d4b48997f325eba938eb6018c8f5"
   },
   "testfile.txt": {
-    "sha": "6c96da536cdf1c961b6d93dccda55b81c780d917"
+    "sha": "4fffda562548d4b48997f325eba938eb6018c8f5"
   }
 }
