@@ -88,15 +88,15 @@ async function saveDirectoryStructure(
       directories[subdir][key] = value;
     }
   });
+  console.log(directories);
   await Promise.all(
     Object.entries(directories).map(([key, value]) => {
       return fs.promises.writeFile(
-        `${key}/${target}`,
+        `${path}/${key}/${target}`,
         stringify(value, { space })
       );
     })
   );
-  console.log(directories);
 }
 
 function setOutput(key, value) {
