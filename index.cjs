@@ -89,7 +89,7 @@ async function saveDirectoryStructure(
     Object.entries(directories).map(([key, value]) => {
       delete value.md5;
       value.md5 = md5(stringify(value));
-
+      console.log("writing", `${path}/${key}/${target}`);
       return fs.promises.writeFile(
         `${path}/${key}/${target}`,
         stringify(value, { space })
