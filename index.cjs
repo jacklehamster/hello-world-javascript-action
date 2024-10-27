@@ -79,7 +79,7 @@ async function saveDirectoryStructure(
   const directories = {};
   Object.entries(structure).forEach(([key, value]) => {
     const split = key.split("/");
-    for (let i = 1; i < split.length; i++) {
+    for (let i = 0; i < split.length; i++) {
       const subdir = split.slice(0, i).join("/");
       if (!directories[subdir]) directories[subdir] = {};
       directories[subdir][split.slice(i).join("/")] = value;
